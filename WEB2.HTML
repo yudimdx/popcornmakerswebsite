@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://12.42.204.30:7005/jTable/jquery.jtable.js"></script>
+    <script src="http://12.42.204.30:7005/scripts/helpers.js"></script>
+    <link href="http://12.42.204.30:7005/jTable/themes/lightcolor/red/jtable.css" rel="stylesheet">
+
+    <!-- Do not change the code above -->
+
+    <link href="css/WEB1.CSS" rel="stylesheet">
+    <!-- Modify myStyles.css to add additional styles or add your own stylesheet-->
+    <link href="css/dropdown.css" rel="stylesheet">
+    <!-- Modify dropdown.css to add additional styles or add your own stylesheet-->
+
+
+    <title>CUSTOMER ORDERS</title> <!-- Modify title for your application -->
+
+
+    <script>
+        $(document).ready(function () {
+            $('#container1').jtable({
+                title: 'Customer Orders',
+                paging: true,
+                pageSize: 11,
+                sorting: true,
+                defaultSorting: 'ORDER_DATE, ORDER_NUMBER, PRODUCT_ID',
+                actions: {
+                    listAction: 'genJson2.rpgle?jtView=WEB2V'
+                },
+                fields: {
+                    customer_name: {
+                        title: 'CUSTOMER_NAME',
+                        width: '10%',
+                        list: true
+                    },
+                    order_date: {
+                        title: 'ORDER_DATE',
+                        width: '5%',
+                        list: true
+                    },
+                    order_number: {
+                        title: 'ORDER_NUMBER',
+                        width: '5%',
+                        list: true
+                    },
+                    product_id: {
+                        title: 'PRODUCT_ID',
+                        width: '5%',
+                        list: true
+                    },
+                    description: {
+                        title: 'DESCRIPTION',
+                        width: '30%',
+                        list: true
+                    },
+                    quantity_ordered: {
+                        title: 'QUANTITY_ORDERED',
+                        width: '10%',
+                        list: true,
+                    },
+                    price: {
+                        title: 'PRICE',
+                        width: '5%',
+                        list: true,
+                    },
+                    EXTENDED_PRICE: {
+                        title: 'EXTENDED_PRICE',
+                        width: '10%',
+                        list: true,
+                        display: function (data) {
+                            return formatCurrency(data.record.extended_price)
+                        }
+                    }
+                }
+            });
+            $('#container1').jtable('load');
+        });
+    </script>
+</head>
+
+<body>
+    <nav style="width: 90%; margin-left: auto; margin-right: auto;">
+        <a href="http://12.42.204.30:7121"> Home </a>
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="http://12.42.204.30:7121/WEB1.html">Products Table</a>
+                <a href="http://12.42.204.30:7121/WEB2.html">Customer Orders</a>
+                <a href="http://12.42.204.30:7121/WEB3.html">Customer Orders Totals</a>
+                <a href="http://12.42.204.30:7121/WEB4.html">Product Inventory Value</a>
+            </div>
+        </div>
+    </nav>
+    <hr />
+
+    <div id="container1" style="width: 90%;"></div>
+</body>
+
+</html>
